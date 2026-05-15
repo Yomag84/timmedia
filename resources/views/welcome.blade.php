@@ -215,7 +215,7 @@
             'addressCountry' => 'NG',
         ],
         'telephone' => '',
-        'email' => 'info@timmedia.com.ng',
+        'email' => 'info@timmedia.flcoders.online',
         'url' => url('/'),
         'priceRange' => '$$',
         'foundingDate' => '2021-02-11',
@@ -250,7 +250,7 @@
             '@type' => 'ContactPoint',
             'telephone' => '',
             'contactType' => 'Customer Service',
-            'email' => 'info@timmedia.com.ng',
+            'email' => 'info@timmedia.flcoders.online',
         ],
     ], JSON_UNESCAPED_SLASHES) !!}</script>
 
@@ -777,7 +777,7 @@
                             <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
                                 <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             </div>
-                            <div><p class="font-bold text-gray-900 mb-0.5">Email Us</p><p class="text-gray-500 text-sm">info@timmedia.com.ng</p></div>
+                            <div><p class="font-bold text-gray-900 mb-0.5">Email Us</p><p class="text-gray-500 text-sm">info@timmedia.flcoders.online</p></div>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -884,7 +884,7 @@
                         </li>
                         <li class="flex items-center gap-3 text-sm">
                             <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                            <span class="text-gray-400">info@timmedia.com.ng</span>
+                            <span class="text-gray-400">info@timmedia.flcoders.online</span>
                         </li>
                         <li class="flex items-center gap-3 text-sm">
                             <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>

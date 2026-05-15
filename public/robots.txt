@@ -17,4 +17,4 @@ User-agent: Bingbot
 Allow: /
 
 # Sitemap location
-Sitemap: https://timmedia.com.ng/sitemap.xml
+Sitemap: https://timmedia.flcoders.online/sitemap.xml

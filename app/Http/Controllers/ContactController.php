@@ -18,7 +18,7 @@ class ContactController extends Controller
             'message' => ['required', 'string', 'max:2000'],
         ]);
 
-        $recipient = env('CONTACT_EMAIL', 'info@timmedia.com.ng');
+        $recipient = env('CONTACT_EMAIL', 'info@timmedia.flcoders.online');
 
         Mail::to($recipient)->send(new ContactMail($validated));
 

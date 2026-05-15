@@ -1,4 +1,4 @@
-Contact: mailto:info@timmedia.com.ng
+Contact: mailto:info@timmedia.flcoders.online
 Expires: 2026-02-11T00:00:00.000Z
 Preferred-Languages: en, yo
-Canonical: https://timmedia.com.ng/.well-known/security.txt
+Canonical: https://timmedia.flcoders.online/.well-known/security.txt
