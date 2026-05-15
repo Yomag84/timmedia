@@ -1,58 +1,128 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TIMMedia Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+TIMMedia is a Laravel web application for a digital business center. It serves a marketing homepage and handles customer enquiries through a contact form that sends email to the business team.
 
-## About Laravel
+## Application Facts
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Framework: Laravel 13
+- PHP version: 8.3+
+- Frontend tooling: Vite 8 + Tailwind CSS 4
+- Primary domain used in project assets: `timmedia.flcoders.online`
+- Main functionality: public homepage and contact form email delivery
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Current Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Public landing page at `/`
+- Contact form submission endpoint at `/contact`
+- Success page at `/contact/success`
+- Server-side form validation before sending mail
+- Branded contact email template (`resources/views/mail/contact.blade.php`)
+- SEO support files:
+	- `public/robots.txt`
+	- `public/sitemap.xml`
+	- `public/.well-known/security.txt`
 
-## Learning Laravel
+## Routes
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The web routes are defined in `routes/web.php`:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- `GET /` -> renders the welcome page (`home`)
+- `POST /contact` -> sends contact email (`contact.send`)
+- `GET /contact/success` -> renders success page (`contact.success`)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Contact Flow
 
-## Agentic Development
+1. User submits the contact form from the homepage.
+2. `ContactController@send` validates input:
+	 - `name` (required, max 100)
+	 - `email` (required, valid email, max 150)
+	 - `phone` (optional, max 20)
+	 - `subject` (required, max 200)
+	 - `message` (required, max 2000)
+3. App sends `App\\Mail\\ContactMail` using Laravel Mail.
+4. User is redirected to the success page.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+If `CONTACT_EMAIL` is not set, the app currently falls back to:
+
+- `info@timmedia.flcoders.online`
+
+## Local Development
+
+### Prerequisites
+
+- PHP 8.3+
+- Composer
+- Node.js + npm
+
+### Setup
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+npm install
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Run in development
 
-## Contributing
+```bash
+composer run dev
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+This starts:
 
-## Code of Conduct
+- Laravel development server
+- Queue listener
+- Log tailing
+- Vite dev server
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Build frontend assets
 
-## Security Vulnerabilities
+```bash
+npm run build
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Environment Variables
 
-## License
+Important environment values to configure:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- `APP_URL` - public base URL for generated links
+- `CONTACT_EMAIL` - recipient for contact form messages
+- `MAIL_MAILER`
+- `MAIL_HOST`
+- `MAIL_PORT`
+- `MAIL_USERNAME`
+- `MAIL_PASSWORD`
+- `MAIL_ENCRYPTION`
+- `MAIL_FROM_ADDRESS`
+- `MAIL_FROM_NAME`
+
+## Testing
+
+Run tests with:
+
+```bash
+composer test
+```
+
+or
+
+```bash
+php artisan test
+```
+
+## Project Structure (Important Paths)
+
+- `app/Http/Controllers/ContactController.php` - contact form handling
+- `app/Mail/ContactMail.php` - contact mailable
+- `resources/views/welcome.blade.php` - main landing page
+- `resources/views/contact/success.blade.php` - success page
+- `resources/views/mail/contact.blade.php` - email template
+- `routes/web.php` - web routes
+- `public/sitemap.xml` - sitemap URLs
+
+## Notes
+
+- Domain references in app content and SEO files are set to `timmedia.flcoders.online`.
+- If this project is deployed on a different domain, update `APP_URL`, contact email values, and SEO files accordingly.
